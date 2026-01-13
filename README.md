@@ -39,7 +39,7 @@ Funkcja `iterative_correction()` wykonuje te czynności iteracyjnie.
 `estimate_noisy()` ocenia szum na podstawie udziału singletonów 21‑merów.
 Jeśli dużo 21‑merów ma count=1, dane uznaję za zaszumione i stosuję agresywniejsze korekcję i czyszczenie.
 
-### 4) Stosowanie wielu różnych wartości k
+### 4) Stosowanie wielu różnych wartości k i ogólny zarys pipeline'u
 Assembler działa w kilku krokach dla rosnących k (np. 21 → 27 → 31 → 35 → 41 dla danych niezaszumionych). Kroki wymienione poniżej zostaną lepiej wyjaśnione w następnych punktach README.
 Dla każdego `(k, min_len)`:
 1. ewentualna kolejna korekcja dla danego k (głównie dla małych k),
@@ -116,5 +116,4 @@ Aby nie wypisywać dziesiątek bardzo podobnych kontigów:
 - filtruje dopasowania na podstawie mismatchy,
 - zbiera głosy per pozycja i poprawia nukleotyd, jeśli ma większość i wystarczająco głosów.
 
-Polishing poprawia identyczność (identity), zwłaszcza gdy wcześniejsze etapy zostawiły pojedyncze błędy.
 ---
