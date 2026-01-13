@@ -25,11 +25,11 @@ Uruchomienie:
 - `write_fasta()` zapisuje kontigi w formacie FASTA
 
 ### 2) Histogram k‑merów i iteracyjna korekcja błędów
-Buduję histogram k‑merów (`kmer_hist`) i lokalnie poprawiamy „słabe” k‑mery w odczytach:
+Buduję histogram k‑merów (`kmer_hist`) i lokalnie poprawiam „słabe” k‑mery w odczytach:
 - k‑mer jest *słaby* jeśli jego liczność `<= weak`,
 - dla słabego k‑meru testuję sąsiadów w odległości Hamminga 1 (`neighbors1mm`),
 - opcjonalnie (dla bardzo zaszumionych danych) dopuszczam 2‑mm (`neighbors2mm`),
-- podmieniamy k‑mer tylko wtedy, gdy najlepszy kandydat jest wyraźnie lepiej wsparty:
+- podmieniam k‑mer tylko wtedy, gdy najlepszy kandydat jest wyraźnie lepiej wsparty:
   - poprawa co najmniej o `min_improve`,
   - przechodzi test `ratio` względem orgyinalego k-meru,
 
@@ -37,7 +37,7 @@ Funkcja `iterative_correction()` wykonuje te czynności iteracyjnie.
 
 ### 3) Wykrywanie „noisy” danych
 `estimate_noisy()` ocenia szum na podstawie udziału singletonów 21‑merów.
-Jeśli dużo 21‑merów ma count=1, dane uznajemy za zaszumione i stosujemy agresywniejsze korekcję i czyszczenie.
+Jeśli dużo 21‑merów ma count=1, dane uznaję za zaszumione i stosuję agresywniejsze korekcję i czyszczenie.
 
 ### 4) Stosowanie wielu różnych wartości k
 Assembler działa w kilku krokach dla rosnących k (np. 21 → 27 → 31 → 35 → 41 dla danych niezaszumionych). Kroki wymienione poniżej zostaną lepiej wyjaśnione w następnych punktach README.
@@ -70,7 +70,7 @@ Intuicja, którą kierowano się tworząc program:
 Stosowane heurystyki:
 
 **a) `prune_weak_branches`**  
-Gdy w węźle jest rozgałęzienie, usuwamy wyjścia wyraźnie słabsze od najsilniejszego (korzystając z coverage ratio).
+Gdy w węźle jest rozgałęzienie, usuwam wyjścia wyraźnie słabsze od najsilniejszego (korzystając z coverage ratio).
 
 **b) `remove_tips`**  
 Usuwam krótkie „tipy” – ślepe odnogi zakończone dead-endem, jeśli ich średnie pokrycie jest niskie.
@@ -88,7 +88,7 @@ To ogranicza błędy, artefakty i alternatywne ścieżki powodowane szumem.
 - zostawia tylko sekwencje o długości >= `min_len`.
 
 ### 8) Wydłużanie kontigów przez read-threading
-Budujemy mapy:
+Buduję mapy:
 - `follow_map[(k-1)-mer][base]` — jak często dana baza występuje **po** (k‑1)‑merze,
 - `prev_map[(k-1)-mer][base]` — jak często dana baza występuje **przed** (k‑1)‑merem.
 
